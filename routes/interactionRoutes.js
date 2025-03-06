@@ -4,7 +4,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-// ✅ Create Interaction
+// Create Interaction
 router.post("/", authMiddleware, async (req, res) => {
   const { merchantId, businessType, interactionType, title, description, assignedTo, followUpDate, status } = req.body;
   try {
@@ -28,7 +28,7 @@ router.post("/", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Get Interaction by ID (Only if createdBy or assignedTo)
+// Get Interaction by ID 
 router.get("/:interactionId", authMiddleware, async (req, res) => {
   try {
     const interaction = await Interaction.findById(req.params.interactionId)
@@ -49,7 +49,7 @@ router.get("/:interactionId", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Get All Interactions by Merchant ID (Only if createdBy or assignedTo)
+// Get All Interactions by Merchant ID 
 router.get("/merchant/:merchantId", authMiddleware, async (req, res) => {
   try {
     const interactions = await Interaction.find({ merchantId: req.params.merchantId })
@@ -67,7 +67,7 @@ router.get("/merchant/:merchantId", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Update Interaction by ID (Only if createdBy or assignedTo)
+// Update Interaction by ID
 router.put("/:interactionId", authMiddleware, async (req, res) => {
   try {
     const { businessType, interactionType, title, description, assignedTo, followUpDate, status } = req.body;
@@ -96,7 +96,7 @@ router.put("/:interactionId", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Delete Interaction by ID (Only if createdBy or assignedTo)
+// Delete Interaction by ID 
 router.delete("/:interactionId", authMiddleware, async (req, res) => {
   try {
     const interaction = await Interaction.findById(req.params.interactionId);

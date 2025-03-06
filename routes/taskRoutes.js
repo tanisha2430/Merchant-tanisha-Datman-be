@@ -4,7 +4,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-// ✅ Create Task
+// Create Task
 router.post("/", authMiddleware, async (req, res) => {
   const { merchantId, interactionId, businessType, title, description, assignedTo, followUpDate, status, reminderTime, reminderDate } = req.body;
   try {
@@ -31,7 +31,7 @@ router.post("/", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Get Task by ID (Only if createdBy or assignedTo)
+//  Get Task by ID 
 router.get("/:taskId", authMiddleware, async (req, res) => {
   try {
     const task = await Task.findById(req.params.taskId)
@@ -53,7 +53,7 @@ router.get("/:taskId", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Get All Tasks by Interaction ID (Only if createdBy or assignedTo)
+//  Get All Tasks by Interaction ID 
 router.get("/interaction/:interactionId", authMiddleware, async (req, res) => {
   try {
     const tasks = await Task.find({ interactionId: req.params.interactionId })
@@ -100,7 +100,7 @@ router.get("/merchantId/:merchantId", authMiddleware, async (req, res) => {
 
 
 
-// ✅ Update Task by ID (Only if createdBy or assignedTo)
+//  Update Task by ID 
 router.put("/:taskId", authMiddleware, async (req, res) => {
   try {
     const { title, description, assignedTo, followUpDate, status, businessType, reminderTime, reminderDate } = req.body;
@@ -130,7 +130,7 @@ router.put("/:taskId", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Delete Task by ID (Only if createdBy or assignedTo)
+//  Delete Task by ID 
 router.delete("/:taskId", authMiddleware, async (req, res) => {
   try {
     const task = await Task.findById(req.params.taskId);

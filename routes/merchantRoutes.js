@@ -4,7 +4,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-// ✅ Get All Merchants
+// Get All Merchants
 router.get("/", authMiddleware, async (req, res) => {
   try {
     const merchants = await Merchant.find();
@@ -14,7 +14,7 @@ router.get("/", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Get Merchant by ID
+//  Get Merchant by ID
 router.get("/:id", authMiddleware, async (req, res) => {
   try {
     const merchant = await Merchant.findById(req.params.id);
@@ -27,7 +27,7 @@ router.get("/:id", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Create Merchant (Optional: If you want to add merchants via API)
+//  Create Merchant
 router.post("/", authMiddleware, async (req, res) => {
   const { name, description } = req.body;
 
